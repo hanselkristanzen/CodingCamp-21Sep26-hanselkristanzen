@@ -1,0 +1,763 @@
+/* =============================================================================
+   Expense & Budget Visualizer — styles.css
+   =============================================================================
+   Table of contents:
+     1. CSS Custom Properties (design tokens)
+     2. Dark mode overrides
+     3. Reset / base
+     4. Typography
+     5. Layout (header, main grid, transaction section)
+     6. Balance display
+     7. Form controls
+     8. Buttons
+     9. Inline error messages
+    10. Transaction list
+    11. Chart container
+    12. Spending limits panel
+    13. Filter & sort section
+    14. Theme toggle
+    15. Notification / toast banner
+    16. Responsive (< 768 px)
+   ============================================================================= */
+
+
+/* =============================================================================
+   1. CSS Custom Properties
+   ============================================================================= */
+
+:root {
+  /* Background layers */
+  --color-bg:           #f5f6fa;
+  --color-surface:      #ffffff;
+  --color-surface-alt:  #eef0f5;
+
+  /* Text */
+  --color-text:         #1a1d2e;
+  --color-text-muted:   #5c6070;
+
+  /* Borders */
+  --color-border:       #d1d5e0;
+
+  /* Accent / interactive */
+  --color-accent:       #4361ee;
+  --color-accent-hover: #3050dd;
+
+  /* Success / danger */
+  --color-danger:       #d62828;
+  --color-danger-bg:    #fff0f0;
+  --color-success:      #2d8a4e;
+
+  /* Over-limit highlight */
+  --color-over-limit:        #ffe0e0;
+  --color-over-limit-border: #d62828;
+  --color-over-limit-text:   #7a0000;
+
+  /* Toast / notification */
+  --color-toast-bg:     #1a1d2e;
+  --color-toast-text:   #f5f6fa;
+
+  /* Spacing */
+  --spacing-xs:   4px;
+  --spacing-sm:   8px;
+  --spacing-md:   16px;
+  --spacing-lg:   24px;
+  --spacing-xl:   32px;
+
+  /* Border radius */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.10);
+
+  /* Transition */
+  --transition: 150ms ease;
+}
+
+
+/* =============================================================================
+   2. Dark mode overrides  (data-theme="dark" on <html>)
+   ============================================================================= */
+
+[data-theme="dark"] {
+  --color-bg:           #0f1117;
+  --color-surface:      #1a1d2e;
+  --color-surface-alt:  #252838;
+
+  --color-text:         #e8eaf2;
+  --color-text-muted:   #8b90a8;
+
+  --color-border:       #353854;
+
+  --color-accent:       #6c8af5;
+  --color-accent-hover: #859cf7;
+
+  --color-danger:       #ff6b6b;
+  --color-danger-bg:    #3a1010;
+
+  --color-over-limit:        #3a0000;
+  --color-over-limit-border: #ff4444;
+  --color-over-limit-text:   #ffb3b3;
+
+  --color-toast-bg:     #e8eaf2;
+  --color-toast-text:   #0f1117;
+
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.30);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.40);
+}
+
+
+/* =============================================================================
+   3. Reset / base
+   ============================================================================= */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  /* Smooth theme transitions for everything except the very first paint
+     (the theme-flash prevention script applies the theme before this runs). */
+  transition:
+    background-color var(--transition),
+    color var(--transition);
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;
+  font-size: 15px;            /* ≥ 14 px per Req 12.2 */
+  line-height: 1.5;
+  min-height: 100vh;
+}
+
+ul {
+  list-style: none;
+}
+
+
+/* =============================================================================
+   4. Typography
+   ============================================================================= */
+
+/* Heading scale — enforces ≥ 4 px size difference between levels (Req 12.2) */
+h1 { font-size: 22px; font-weight: 700; line-height: 1.2; }  /* 22 px */
+h2 { font-size: 17px; font-weight: 600; line-height: 1.3; }  /* 17 px — gap: 5 px */
+h3 { font-size: 13px; font-weight: 600; line-height: 1.4; }  /* 13 px — gap: 4 px */
+
+/* Labels and form text — minimum 12 px (Req 12.2) */
+label {
+  font-size: 13px;    /* ≥ 12 px */
+  font-weight: 500;
+  color: var(--color-text);
+}
+
+
+/* =============================================================================
+   5. Layout
+   ============================================================================= */
+
+/* ── Header ─────────────────────────────────────────────────────────────────── */
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-md);
+  padding: var(--spacing-md) var(--spacing-xl);
+  background-color: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+  box-shadow: var(--shadow-sm);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+/* ── Balance display — full width below header ───────────────────────────────── */
+#balance-display {
+  padding: var(--spacing-md) var(--spacing-xl);
+  background-color: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+  font-size: 18px;
+  font-weight: 600;
+  /* Spans full width naturally as a block element */
+}
+
+#balance-value {
+  color: var(--color-accent);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── Main two-column grid ─────────────────────────────────────────────────────
+   Left column:  form + custom category + filter/sort
+   Right column: chart + limits panel
+   Transaction list: below, full width
+   ─────────────────────────────────────────────────────────────────────────── */
+main {
+  display: grid;
+  grid-template-columns: minmax(280px, 1fr) minmax(280px, 1.2fr);
+  gap: var(--spacing-lg);
+  padding: var(--spacing-lg) var(--spacing-xl);
+  align-items: start;
+}
+
+.left-panel,
+.right-panel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+}
+
+/* ── Sections / cards ──────────────────────────────────────────────────────── */
+section {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+section h2 {
+  margin-bottom: var(--spacing-md);
+  color: var(--color-text);
+  border-bottom: 1px solid var(--color-border);
+  padding-bottom: var(--spacing-sm);
+}
+
+/* ── Transaction list section — below main, full width ──────────────────────── */
+body > section:last-of-type,
+section[aria-labelledby="transactions-heading"] {
+  margin: 0 var(--spacing-xl) var(--spacing-xl);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+section[aria-labelledby="transactions-heading"] h2 {
+  margin-bottom: var(--spacing-md);
+  border-bottom: 1px solid var(--color-border);
+  padding-bottom: var(--spacing-sm);
+}
+
+
+/* =============================================================================
+   6. Balance display  (rule above in Layout section covers most; extras here)
+   ============================================================================= */
+
+/* The balance section sits directly on body — remove the card shadow here */
+#balance-display {
+  /* Full width guaranteed by block-level placement */
+  margin: 0;           /* no extra margins; header provides the visual separation */
+}
+
+
+/* =============================================================================
+   7. Form controls
+   ============================================================================= */
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+  margin-bottom: var(--spacing-md);
+}
+
+.form-group:last-of-type {
+  margin-bottom: 0;
+}
+
+input[type="text"],
+input[type="number"],
+select {
+  width: 100%;
+  padding: 8px 10px;
+  font-size: 14px;          /* ≥ 14 px body text */
+  color: var(--color-text);
+  background-color: var(--color-surface-alt);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  outline: none;
+  transition:
+    border-color var(--transition),
+    box-shadow   var(--transition),
+    background-color var(--transition);
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus,
+select:focus {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.18);
+}
+
+/* Style the select arrow on all browsers */
+select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%235c6070' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  padding-right: 28px;
+}
+
+
+/* =============================================================================
+   8. Buttons
+   ============================================================================= */
+
+button {
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: 8px 16px;
+  transition:
+    background-color var(--transition),
+    color            var(--transition),
+    box-shadow       var(--transition),
+    opacity          var(--transition);
+}
+
+button:focus-visible {
+  outline: 3px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+/* Primary action buttons */
+#btn-add-transaction,
+#btn-add-category {
+  width: 100%;
+  margin-top: var(--spacing-sm);
+  padding: 10px 16px;
+  background-color: var(--color-accent);
+  color: #ffffff;
+  border-radius: var(--radius-sm);
+}
+
+#btn-add-transaction:hover,
+#btn-add-category:hover {
+  background-color: var(--color-accent-hover);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Secondary / filter buttons */
+#btn-clear-filter {
+  padding: 7px 12px;
+  background-color: var(--color-surface-alt);
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+}
+
+#btn-clear-filter:hover {
+  background-color: var(--color-border);
+}
+
+/* Delete buttons in transaction list */
+.btn-delete {
+  padding: 3px 9px;
+  background-color: transparent;
+  color: var(--color-danger);
+  border: 1px solid var(--color-danger);
+  border-radius: var(--radius-sm);
+  font-size: 16px;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.btn-delete:hover {
+  background-color: var(--color-danger-bg);
+}
+
+
+/* =============================================================================
+   9. Inline error messages
+   ============================================================================= */
+
+.error-msg {
+  display: none;           /* hidden by default; JS sets display:block to show */
+  font-size: 12px;         /* ≥ 12 px label minimum */
+  color: var(--color-danger);
+  margin-top: var(--spacing-xs);
+  padding: var(--spacing-xs) var(--spacing-sm);
+  background-color: var(--color-danger-bg);
+  border-left: 3px solid var(--color-danger);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+}
+
+/* Limit-row errors sit below the input inside .limit-row */
+.limit-error {
+  margin-top: var(--spacing-xs);
+}
+
+/* When shown by JS (display:block override), also respect hidden attribute */
+[hidden] {
+  display: none !important;
+}
+
+
+/* =============================================================================
+   10. Transaction list
+   ============================================================================= */
+
+#transaction-list {
+  max-height: 420px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+}
+
+/* Custom scrollbar (WebKit/Blink) */
+#transaction-list::-webkit-scrollbar {
+  width: 6px;
+}
+#transaction-list::-webkit-scrollbar-track {
+  background: var(--color-surface-alt);
+}
+#transaction-list::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 3px;
+}
+
+.transaction-item {
+  display: grid;
+  grid-template-columns: 1fr auto auto auto;
+  align-items: center;
+  gap: var(--spacing-sm);
+  padding: 10px var(--spacing-md);
+  border-bottom: 1px solid var(--color-border);
+  background-color: var(--color-surface);
+  transition:
+    background-color var(--transition),
+    border-left-color var(--transition);
+}
+
+.transaction-item:last-child {
+  border-bottom: none;
+}
+
+.transaction-item:hover {
+  background-color: var(--color-surface-alt);
+}
+
+/* ── Over-limit highlight (Req 9.2) ─────────────────────────────────────────── */
+.transaction-item.over-limit {
+  background-color: var(--color-over-limit);
+  border-left: 4px solid var(--color-over-limit-border);
+  color: var(--color-over-limit-text);
+}
+
+.transaction-item.over-limit .tx-amount {
+  color: var(--color-over-limit-border);
+  font-weight: 600;
+}
+
+.transaction-item.over-limit:hover {
+  background-color: var(--color-over-limit);
+  filter: brightness(0.96);
+}
+
+/* Transaction fields */
+.tx-name {
+  font-weight: 500;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.tx-category {
+  font-size: 12px;
+  color: var(--color-text-muted);
+  background-color: var(--color-surface-alt);
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  padding: 2px 8px;
+  white-space: nowrap;
+}
+
+.tx-amount {
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  color: var(--color-accent);
+  white-space: nowrap;
+}
+
+/* Empty state */
+.empty-state {
+  padding: var(--spacing-lg);
+  text-align: center;
+  color: var(--color-text-muted);
+  font-style: italic;
+}
+
+
+/* =============================================================================
+   11. Chart container
+   ============================================================================= */
+
+#chart-container {
+  position: relative;
+  width: 100%;
+}
+
+#chart-container canvas {
+  max-width: 100%;
+  height: auto;
+}
+
+#chart-empty-state {
+  text-align: center;
+  color: var(--color-text-muted);
+  font-style: italic;
+  padding: var(--spacing-xl) 0;
+}
+
+
+/* =============================================================================
+   12. Spending limits panel
+   ============================================================================= */
+
+#limits-panel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.limit-row {
+  display: grid;
+  grid-template-columns: minmax(80px, 1fr) minmax(100px, 1.2fr);
+  grid-template-rows: auto auto;
+  gap: var(--spacing-xs) var(--spacing-sm);
+  align-items: center;
+  padding: var(--spacing-sm) 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.limit-row:last-child {
+  border-bottom: none;
+}
+
+.limit-row label {
+  grid-column: 1;
+  grid-row: 1;
+  font-weight: 500;
+}
+
+.limit-row .limit-input {
+  grid-column: 2;
+  grid-row: 1;
+  margin: 0;
+}
+
+.limit-row .limit-error {
+  grid-column: 1 / -1;
+  grid-row: 2;
+}
+
+
+/* =============================================================================
+   13. Filter & sort section
+   ============================================================================= */
+
+#monthly-filter {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-md);
+}
+
+#monthly-filter label {
+  flex-shrink: 0;
+}
+
+#monthly-filter select {
+  flex: 1;
+  min-width: 100px;
+}
+
+#sort-control {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+#sort-control label {
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+#sort-control select {
+  flex: 1;
+}
+
+
+/* =============================================================================
+   14. Theme toggle  (Req 10.1, 10.2)
+   ============================================================================= */
+
+#theme-toggle {
+  background: none;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 6px 10px;
+  font-size: 18px;
+  line-height: 1;
+  color: var(--color-text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;   /* touch target */
+  min-height: 44px;
+  transition:
+    background-color var(--transition),
+    border-color     var(--transition),
+    box-shadow       var(--transition);
+}
+
+#theme-toggle:hover {
+  background-color: var(--color-surface-alt);
+  border-color: var(--color-accent);
+}
+
+/* When dark mode is active (aria-pressed="true"), give the button a tinted bg */
+#theme-toggle[aria-pressed="true"] {
+  background-color: var(--color-surface-alt);
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 2px rgba(108, 138, 245, 0.25);
+}
+
+/* The emoji content (🌙 / ☀️) is managed by JS (App.Theme.apply);
+   no CSS content swap needed. The aria-pressed selector handles visual state. */
+
+
+/* =============================================================================
+   15. Notification / toast banner  (Req 1.7, 5.4, 5.5, 18.2)
+   ============================================================================= */
+
+#notification-banner {
+  position: fixed;
+  bottom: var(--spacing-lg);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 500;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  min-width: 260px;
+  max-width: min(600px, 92vw);
+  padding: var(--spacing-sm) var(--spacing-md);
+  background-color: var(--color-toast-bg);
+  color: var(--color-toast-text);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+  font-size: 14px;
+  line-height: 1.4;
+
+  /* Entry animation */
+  animation: toast-in 200ms ease forwards;
+}
+
+/* Auto-dismiss animation: fade out starting at 4.8 s, gone by 5 s.
+   JS also removes the element via setTimeout(5000) as a fallback. */
+#notification-banner:not([hidden]) {
+  animation: toast-in 200ms ease forwards;
+}
+
+@keyframes toast-in {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+/* The JS-driven hide (setAttribute('hidden','')) triggers the [hidden] rule
+   which forces display:none — no separate fadeout keyframe needed because the
+   JS hides it after the 5 s timeout. */
+
+.toast-dismiss {
+  margin-left: auto;
+  flex-shrink: 0;
+  background: none;
+  border: none;
+  color: var(--color-toast-text);
+  font-size: 18px;
+  padding: 2px 4px;
+  line-height: 1;
+  border-radius: var(--radius-sm);
+  opacity: 0.7;
+}
+
+.toast-dismiss:hover {
+  opacity: 1;
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+
+/* =============================================================================
+   16. Responsive — single-column below 768 px  (Req 12.3)
+   ============================================================================= */
+
+@media (max-width: 767px) {
+  /* Collapse two-column grid to single column */
+  main {
+    grid-template-columns: 1fr;
+    padding: var(--spacing-md);
+  }
+
+  /* Remove the large side padding from the balance and transactions sections */
+  #balance-display {
+    padding: var(--spacing-md);
+  }
+
+  section[aria-labelledby="transactions-heading"] {
+    margin: 0 var(--spacing-md) var(--spacing-md);
+  }
+
+  /* Header — tighten on small screens */
+  header {
+    padding: var(--spacing-sm) var(--spacing-md);
+  }
+
+  h1 {
+    font-size: 18px;
+  }
+
+  /* Monthly filter: stack controls */
+  #monthly-filter {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  #monthly-filter select {
+    width: 100%;
+  }
+
+  /* Sort control: stack */
+  #sort-control {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  /* Transaction items: fewer columns on tiny screens */
+  .transaction-item {
+    grid-template-columns: 1fr auto auto;
+    row-gap: var(--spacing-xs);
+  }
+
+  .tx-category {
+    grid-column: 1 / -1;
+    justify-self: start;
+  }
+}

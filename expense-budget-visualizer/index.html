@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Expense &amp; Budget Visualizer</title>
+
+  <!-- Theme flash prevention: must run before CSS to avoid FOUC -->
+  <script>
+    (function() {
+      try {
+        var t = localStorage.getItem('evb_theme');
+        if (t === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
+      } catch(e) {}
+    })();
+  </script>
+
+  <link rel="stylesheet" href="css/styles.css" />
+  <script src="vendor/chart.umd.min.js"></script>
+  <script src="js/app.js"></script>
+</head>
+<body>
+
+  <header>
+    <h1>Expense &amp; Budget Visualizer</h1>
+    <button id="theme-toggle" aria-pressed="false" aria-label="Toggle dark mode">🌙</button>
+  </header>
+
+  <!-- Balance Display -->
+  <section id="balance-display" aria-label="Total balance">
+    Total: <span id="balance-value">$0.00</span>
+  </section>
+
+  <main>
+    <div class="left-panel">
+
+      <!-- Transaction Input Form -->
+      <section aria-labelledby="form-heading">
+        <h2 id="form-heading">Add Transaction</h2>
+        <form id="transaction-form" novalidate>
+          <div class="form-group">
+            <label for="input-name">Item Name</label>
+            <input
+              type="text"
+              id="input-name"
+              name="name"
+              maxlength="100"
+              placeholder="e.g. Coffee"
+              autocomplete="off"
+            />
+            <span id="error-name" class="error-msg" role="alert" aria-live="polite"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="input-amount">Amount ($)</label>
+            <input
+              type="number"
+              id="input-amount"
+              name="amount"
+              min="0.01"
+              max="999999999.99"
+              step="0.01"
+              placeholder="e.g. 4.50"
+            />
+            <span id="error-amount" class="error-msg" role="alert" aria-live="polite"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="input-category">Category</label>
+            <select id="input-category" name="category" aria-describedby="error-category">
+              <option value="Food">Food</option>
+              <option value="Transport">Transport</option>
+              <option value="Fun">Fun</option>
+            </select>
+            <span id="error-category" class="error-msg" role="alert" aria-live="polite"></span>
+          </div>
+
+          <button type="submit" id="btn-add-transaction">Add Transaction</button>
+        </form>
+      </section>
+
+      <!-- Custom Category -->
+      <section aria-labelledby="category-heading">
+        <h2 id="category-heading">Add Category</h2>
+        <div class="form-group">
+          <label for="input-custom-category">New Category Name</label>
+          <input
+            type="text"
+            id="input-custom-category"
+            name="custom-category"
+            maxlength="50"
+            placeholder="e.g. Health"
+            autocomplete="off"
+          />
+          <span id="error-custom-category" class="error-msg" role="alert" aria-live="polite"></span>
+        </div>
+        <button type="button" id="btn-add-category">Add Category</button>
+      </section>
+
+      <!-- Filter & Sort -->
+      <section aria-labelledby="filter-heading">
+        <h2 id="filter-heading">Filter &amp; Sort</h2>
+        <div id="monthly-filter">
+          <label for="filter-month">Month</label>
+          <select id="filter-month" aria-label="Filter by month">
+            <option value="1">January</option>
+            <option value="2">February</option>
+            <option value="3">March</option>
+            <option value="4">April</option>
+            <option value="5">May</option>
+            <option value="6">June</option>
+            <option value="7">July</option>
+            <option value="8">August</option>
+            <option value="9">September</option>
+            <option value="10">October</option>
+            <option value="11">November</option>
+            <option value="12">December</option>
+          </select>
+
+          <label for="filter-year">Year</label>
+          <select id="filter-year" aria-label="Filter by year">
+            <!-- Populated dynamically by JS -->
+          </select>
+
+          <button type="button" id="btn-clear-filter">Show All</button>
+        </div>
+
+        <div id="sort-control">
+          <label for="sort-select">Sort by</label>
+          <select id="sort-select" aria-label="Sort transactions">
+            <option value="">Default</option>
+            <option value="amount-asc">Amount ↑</option>
+            <option value="amount-desc">Amount ↓</option>
+            <option value="category-az">Category A–Z</option>
+          </select>
+        </div>
+      </section>
+
+    </div><!-- /.left-panel -->
+
+    <div class="right-panel">
+
+      <!-- Pie Chart -->
+      <section aria-labelledby="chart-heading">
+        <h2 id="chart-heading">Spending by Category</h2>
+        <div id="chart-container">
+          <canvas id="spending-chart" aria-label="Spending pie chart" role="img"></canvas>
+          <p id="chart-empty-state" role="status" aria-live="polite" hidden>No spending data available.</p>
+        </div>
+      </section>
+
+      <!-- Spending Limits -->
+      <section aria-labelledby="limits-heading">
+        <h2 id="limits-heading">Spending Limits</h2>
+        <div id="limits-panel">
+          <!-- Populated dynamically by JS -->
+        </div>
+      </section>
+
+    </div><!-- /.right-panel -->
+  </main>
+
+  <!-- Transaction List -->
+  <section aria-labelledby="transactions-heading">
+    <h2 id="transactions-heading">Transactions</h2>
+    <ul id="transaction-list" aria-label="Transaction list">
+      <!-- Populated dynamically by JS -->
+    </ul>
+  </section>
+
+  <!-- Notification banner (for non-blocking errors/warnings) -->
+  <div id="notification-banner" role="status" aria-live="polite" hidden></div>
+
+</body>
+</html>

@@ -1,0 +1,382 @@
+{
+  "pbtResults": {},
+  "executionHistory": {
+    "1.1 Create the directory structure and static entry files": [
+      {
+        "executionId": "4674b0d2-250d-43d4-a33b-affc746bd9a0",
+        "chatSessionId": "sess_97f7cbe1-edd1-4100-8fce-814c2948bf30",
+        "timestamp": 1790255909563
+      },
+      {
+        "executionId": "4674b0d2-250d-43d4-a33b-affc746bd9a0",
+        "chatSessionId": "sess_97f7cbe1-edd1-4100-8fce-814c2948bf30",
+        "timestamp": 1790257463840
+      }
+    ],
+    "1.2 Set up Vitest + jsdom test environment": [
+      {
+        "executionId": "4674b0d2-250d-43d4-a33b-affc746bd9a0",
+        "chatSessionId": "sess_97f7cbe1-edd1-4100-8fce-814c2948bf30",
+        "timestamp": 1790255913540
+      },
+      {
+        "executionId": "0ace61dc-e105-4007-8828-9e4b0e10abfe",
+        "chatSessionId": "sess_c8f2532d-fa4c-4394-8679-85a3b5e3115f",
+        "timestamp": 1790257734010
+      }
+    ],
+    "2.1 Implement `App.Storage` with `save`, `load`, and storage-key constants": [
+      {
+        "executionId": "ce19e3fc-002d-4894-9b8a-943ae8dc3a5f",
+        "chatSessionId": "sess_e8f2dd0b-c959-47af-bda2-dd6116467979",
+        "timestamp": 1790257787346
+      },
+      {
+        "executionId": "ce19e3fc-002d-4894-9b8a-943ae8dc3a5f",
+        "chatSessionId": "sess_e8f2dd0b-c959-47af-bda2-dd6116467979",
+        "timestamp": 1790257854849
+      },
+      {
+        "executionId": "68f42024-969c-4ce0-aa8f-5d0c3199fc5e",
+        "chatSessionId": "sess_bbee73e7-a8b1-424c-b695-3064dbd19bbe",
+        "timestamp": 1790257877811
+      },
+      {
+        "executionId": "68f42024-969c-4ce0-aa8f-5d0c3199fc5e",
+        "chatSessionId": "sess_bbee73e7-a8b1-424c-b695-3064dbd19bbe",
+        "timestamp": 1790258111783
+      }
+    ],
+    "2. Storage module": [
+      {
+        "executionId": "ce19e3fc-002d-4894-9b8a-943ae8dc3a5f",
+        "chatSessionId": "sess_e8f2dd0b-c959-47af-bda2-dd6116467979",
+        "timestamp": 1790257854947
+      }
+    ],
+    "3.1 Implement `App.State` with initial shape and `reset` factory": [
+      {
+        "executionId": "d3363d5c-ccba-41b1-b565-f2e20298329e",
+        "chatSessionId": "sess_ec825009-e7e7-46f7-a9ea-1043be36e9eb",
+        "timestamp": 1790258137458
+      },
+      {
+        "executionId": "d3363d5c-ccba-41b1-b565-f2e20298329e",
+        "chatSessionId": "sess_ec825009-e7e7-46f7-a9ea-1043be36e9eb",
+        "timestamp": 1790258205302
+      }
+    ],
+    "3. State module": [
+      {
+        "executionId": "d3363d5c-ccba-41b1-b565-f2e20298329e",
+        "chatSessionId": "sess_ec825009-e7e7-46f7-a9ea-1043be36e9eb",
+        "timestamp": 1790258205388
+      }
+    ],
+    "4.1 Implement `App.Validator` — transaction field validation": [
+      {
+        "executionId": "6456f225-7826-409d-ae1e-7427c3958efc",
+        "chatSessionId": "sess_193570cb-19d3-4079-9a44-718cf7bbc951",
+        "timestamp": 1790258605839
+      },
+      {
+        "executionId": "6456f225-7826-409d-ae1e-7427c3958efc",
+        "chatSessionId": "sess_193570cb-19d3-4079-9a44-718cf7bbc951",
+        "timestamp": 1790259047795
+      }
+    ],
+    "4.3 Implement `App.Validator` — category and spending-limit validation": [
+      {
+        "executionId": "6456f225-7826-409d-ae1e-7427c3958efc",
+        "chatSessionId": "sess_193570cb-19d3-4079-9a44-718cf7bbc951",
+        "timestamp": 1790258610020
+      },
+      {
+        "executionId": "6456f225-7826-409d-ae1e-7427c3958efc",
+        "chatSessionId": "sess_193570cb-19d3-4079-9a44-718cf7bbc951",
+        "timestamp": 1790259051236
+      }
+    ],
+    "4. Validator module": [
+      {
+        "executionId": "6456f225-7826-409d-ae1e-7427c3958efc",
+        "chatSessionId": "sess_193570cb-19d3-4079-9a44-718cf7bbc951",
+        "timestamp": 1790259051274
+      }
+    ],
+    "5. Checkpoint — core modules": [
+      {
+        "executionId": "0ee6c07e-8e28-44df-adb0-5ac9de9333ca",
+        "chatSessionId": "sess_ef1d02a1-4f65-4d08-9da4-4480fe23ab74",
+        "timestamp": 1790259147405
+      },
+      {
+        "executionId": "0ee6c07e-8e28-44df-adb0-5ac9de9333ca",
+        "chatSessionId": "sess_ef1d02a1-4f65-4d08-9da4-4480fe23ab74",
+        "timestamp": 1790259465079
+      }
+    ],
+    "6.1 Implement `App.Transactions` CRUD": [
+      {
+        "executionId": "2215f04c-f402-4e97-804e-d26bd63a9389",
+        "chatSessionId": "sess_7cc0eeac-0d38-4009-8afc-bd5067c67dbf",
+        "timestamp": 1790259502194
+      },
+      {
+        "executionId": "2215f04c-f402-4e97-804e-d26bd63a9389",
+        "chatSessionId": "sess_7cc0eeac-0d38-4009-8afc-bd5067c67dbf",
+        "timestamp": 1790259770362
+      }
+    ],
+    "6.3 Implement `UI.renderTransactionList(state)`": [
+      {
+        "executionId": "2215f04c-f402-4e97-804e-d26bd63a9389",
+        "chatSessionId": "sess_7cc0eeac-0d38-4009-8afc-bd5067c67dbf",
+        "timestamp": 1790259506131
+      },
+      {
+        "executionId": "2215f04c-f402-4e97-804e-d26bd63a9389",
+        "chatSessionId": "sess_7cc0eeac-0d38-4009-8afc-bd5067c67dbf",
+        "timestamp": 1790259774415
+      }
+    ],
+    "6.5 Implement `UI.renderBalance(state)` ": [
+      {
+        "executionId": "2215f04c-f402-4e97-804e-d26bd63a9389",
+        "chatSessionId": "sess_7cc0eeac-0d38-4009-8afc-bd5067c67dbf",
+        "timestamp": 1790259509667
+      },
+      {
+        "executionId": "2215f04c-f402-4e97-804e-d26bd63a9389",
+        "chatSessionId": "sess_7cc0eeac-0d38-4009-8afc-bd5067c67dbf",
+        "timestamp": 1790259778023
+      }
+    ],
+    "6.7 Implement `UI.render(state)` orchestrator": [
+      {
+        "executionId": "2215f04c-f402-4e97-804e-d26bd63a9389",
+        "chatSessionId": "sess_7cc0eeac-0d38-4009-8afc-bd5067c67dbf",
+        "timestamp": 1790259513525
+      },
+      {
+        "executionId": "2215f04c-f402-4e97-804e-d26bd63a9389",
+        "chatSessionId": "sess_7cc0eeac-0d38-4009-8afc-bd5067c67dbf",
+        "timestamp": 1790259781776
+      }
+    ],
+    "6. Transactions module and transaction list UI": [
+      {
+        "executionId": "2215f04c-f402-4e97-804e-d26bd63a9389",
+        "chatSessionId": "sess_7cc0eeac-0d38-4009-8afc-bd5067c67dbf",
+        "timestamp": 1790259781817
+      }
+    ],
+    "7. Checkpoint — transaction CRUD and balance": [
+      {
+        "executionId": "d777416a-b623-464a-bafc-f696f9a4a461",
+        "chatSessionId": "sess_a14b75dd-ea2e-4a91-8e87-aa53ab125824",
+        "timestamp": 1790260200699
+      },
+      {
+        "executionId": "d777416a-b623-464a-bafc-f696f9a4a461",
+        "chatSessionId": "sess_a14b75dd-ea2e-4a91-8e87-aa53ab125824",
+        "timestamp": 1790260390576
+      }
+    ],
+    "8.1 Implement `App.Chart` module": [
+      {
+        "executionId": "123a5ec9-6629-47f3-b877-ef6f0db210f3",
+        "chatSessionId": "sess_7029e9bc-b0ac-4924-8d00-2409b85ec1a7",
+        "timestamp": 1790260435327
+      },
+      {
+        "executionId": "7fe2d61f-3155-4fc7-847b-8a77ee01367b",
+        "chatSessionId": "sess_7b69332f-6c71-4917-bf5b-7a3d0cfe2335",
+        "timestamp": 1790330904220
+      }
+    ],
+    "8. Pie Chart module": [
+      {
+        "executionId": "7fe2d61f-3155-4fc7-847b-8a77ee01367b",
+        "chatSessionId": "sess_7b69332f-6c71-4917-bf5b-7a3d0cfe2335",
+        "timestamp": 1790330904318
+      }
+    ],
+    "9.1 Implement `Bootstrap.loadState()` — read all four localStorage keys on startup": [
+      {
+        "executionId": "fcf013fa-074a-414f-b74f-795b3323e5c7",
+        "chatSessionId": "sess_0bc85a6e-70b7-41c6-9504-2d0aba1f0f7d",
+        "timestamp": 1790330986538
+      },
+      {
+        "executionId": "fcf013fa-074a-414f-b74f-795b3323e5c7",
+        "chatSessionId": "sess_0bc85a6e-70b7-41c6-9504-2d0aba1f0f7d",
+        "timestamp": 1790331102902
+      }
+    ],
+    "9. Data persistence on load": [
+      {
+        "executionId": "fcf013fa-074a-414f-b74f-795b3323e5c7",
+        "chatSessionId": "sess_0bc85a6e-70b7-41c6-9504-2d0aba1f0f7d",
+        "timestamp": 1790331103002
+      }
+    ],
+    "11.1 Implement `App.Categories` CRUD and `UI.renderCategorySelector`": [
+      {
+        "executionId": "89ba95c7-1c5c-44f4-88a0-f93499f3a08e",
+        "chatSessionId": "sess_e37971a4-1861-40a7-81cc-db6455e528cd",
+        "timestamp": 1790332243436
+      },
+      {
+        "executionId": "89ba95c7-1c5c-44f4-88a0-f93499f3a08e",
+        "chatSessionId": "sess_e37971a4-1861-40a7-81cc-db6455e528cd",
+        "timestamp": 1790332752951
+      }
+    ],
+    "11. Custom Categories module": [
+      {
+        "executionId": "89ba95c7-1c5c-44f4-88a0-f93499f3a08e",
+        "chatSessionId": "sess_e37971a4-1861-40a7-81cc-db6455e528cd",
+        "timestamp": 1790332753024
+      }
+    ],
+    "12.1 Implement `App.Filter.getVisibleTransactions(state)`": [
+      {
+        "executionId": "d1a39550-6bcd-48a7-aa33-67d4cdaa071a",
+        "chatSessionId": "sess_9c00950a-0c98-4310-a002-abf8a5482434",
+        "timestamp": 1790332807927
+      },
+      {
+        "executionId": "d1a39550-6bcd-48a7-aa33-67d4cdaa071a",
+        "chatSessionId": "sess_9c00950a-0c98-4310-a002-abf8a5482434",
+        "timestamp": 1790332949934
+      }
+    ],
+    "12.2 Implement `UI.renderMonthlyFilter(state)` and populate year range": [
+      {
+        "executionId": "94d2c03f-83ed-421e-8369-ab45b46b39ea",
+        "chatSessionId": "sess_b8be5e02-3ab1-42e3-b0ab-bbe3da8037a7",
+        "timestamp": 1790333007290
+      },
+      {
+        "executionId": "94d2c03f-83ed-421e-8369-ab45b46b39ea",
+        "chatSessionId": "sess_b8be5e02-3ab1-42e3-b0ab-bbe3da8037a7",
+        "timestamp": 1790333390964
+      }
+    ],
+    "12. Monthly filter and Filter module": [
+      {
+        "executionId": "94d2c03f-83ed-421e-8369-ab45b46b39ea",
+        "chatSessionId": "sess_b8be5e02-3ab1-42e3-b0ab-bbe3da8037a7",
+        "timestamp": 1790333391033
+      }
+    ],
+    "13.1 Implement `App.Limits` CRUD and `Limits.isOverLimit`": [
+      {
+        "executionId": "8235506e-7277-4340-ace9-ca11ee91924e",
+        "chatSessionId": "sess_ac583951-c29c-4b9a-996e-1b37b69002b7",
+        "timestamp": 1790333443801
+      },
+      {
+        "executionId": "8235506e-7277-4340-ace9-ca11ee91924e",
+        "chatSessionId": "sess_ac583951-c29c-4b9a-996e-1b37b69002b7",
+        "timestamp": 1790334163229
+      }
+    ],
+    "13. Spending Limit Highlight module": [
+      {
+        "executionId": "8235506e-7277-4340-ace9-ca11ee91924e",
+        "chatSessionId": "sess_ac583951-c29c-4b9a-996e-1b37b69002b7",
+        "timestamp": 1790334163313
+      }
+    ],
+    "14.1 Implement `App.Theme` and theme-flash prevention": [
+      {
+        "executionId": "e110ca41-5531-4ccd-8a43-6c0674cc5aa0",
+        "chatSessionId": "sess_b17f824f-3c9b-4649-bc90-239681c12e61",
+        "timestamp": 1790334202081
+      },
+      {
+        "executionId": "e110ca41-5531-4ccd-8a43-6c0674cc5aa0",
+        "chatSessionId": "sess_b17f824f-3c9b-4649-bc90-239681c12e61",
+        "timestamp": 1790334360599
+      }
+    ],
+    "14. Dark/Light Theme module": [
+      {
+        "executionId": "e110ca41-5531-4ccd-8a43-6c0674cc5aa0",
+        "chatSessionId": "sess_b17f824f-3c9b-4649-bc90-239681c12e61",
+        "timestamp": 1790334360665
+      }
+    ],
+    "16.1 Implement `Bootstrap.init()` — wire all event listeners via delegation": [
+      {
+        "executionId": "3e3a4510-6569-4ee1-91a5-5c2b7d9c8427",
+        "chatSessionId": "sess_42977f28-e606-490f-9bf4-9d8e47ccc13f",
+        "timestamp": 1790334397562
+      },
+      {
+        "executionId": "3e3a4510-6569-4ee1-91a5-5c2b7d9c8427",
+        "chatSessionId": "sess_42977f28-e606-490f-9bf4-9d8e47ccc13f",
+        "timestamp": 1790334889325
+      }
+    ],
+    "16. Bootstrap and event wiring": [
+      {
+        "executionId": "3e3a4510-6569-4ee1-91a5-5c2b7d9c8427",
+        "chatSessionId": "sess_42977f28-e606-490f-9bf4-9d8e47ccc13f",
+        "timestamp": 1790334889421
+      }
+    ],
+    "17.1 Implement `css/styles.css` — layout, typography, dark mode": [
+      {
+        "executionId": "ad4dfdea-f837-4b03-a5c5-60ac1496fb96",
+        "chatSessionId": "sess_986805c5-12be-4549-8b68-fc1962e69e8f",
+        "timestamp": 1790335038205
+      },
+      {
+        "executionId": "ad4dfdea-f837-4b03-a5c5-60ac1496fb96",
+        "chatSessionId": "sess_986805c5-12be-4549-8b68-fc1962e69e8f",
+        "timestamp": 1790335179825
+      }
+    ],
+    "17.2 Implement ARIA attributes and keyboard accessibility": [
+      {
+        "executionId": "e2597531-3bb2-4faf-804a-ce2fbd372238",
+        "chatSessionId": "sess_e0af0712-593c-4cda-90aa-73df03d4b1ee",
+        "timestamp": 1790335246246
+      },
+      {
+        "executionId": "e2597531-3bb2-4faf-804a-ce2fbd372238",
+        "chatSessionId": "sess_e0af0712-593c-4cda-90aa-73df03d4b1ee",
+        "timestamp": 1790335368179
+      }
+    ],
+    "17. Responsive layout, CSS, and accessibility": [
+      {
+        "executionId": "e2597531-3bb2-4faf-804a-ce2fbd372238",
+        "chatSessionId": "sess_e0af0712-593c-4cda-90aa-73df03d4b1ee",
+        "timestamp": 1790335368290
+      }
+    ],
+    "18.1 Implement `UI.showInlineError` and `UI.clearInlineError`": [
+      {
+        "executionId": "28bd0c7a-c4e4-47c6-b536-c43d53855fd8",
+        "chatSessionId": "sess_0ff8f8ff-7ef8-4fe8-af03-dcf9d6c904d6",
+        "timestamp": 1790335542335
+      },
+      {
+        "executionId": "28bd0c7a-c4e4-47c6-b536-c43d53855fd8",
+        "chatSessionId": "sess_0ff8f8ff-7ef8-4fe8-af03-dcf9d6c904d6",
+        "timestamp": 1790335645766
+      }
+    ],
+    "18.2 Implement `UI.showToast(message)` non-blocking banner": [
+      {
+        "executionId": "92b78a9e-d703-43a6-9b28-b29f2b8cf3eb",
+        "chatSessionId": "sess_dde14607-dc6f-4c01-9cd2-316151f3eb76",
+        "timestamp": 1790335719005
+      }
+    ]
+  }
+}
